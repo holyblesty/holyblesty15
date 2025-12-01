@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- Bagian head berisi pengaturan awal dokumen HTML -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PENGELOLAAN SURAT PERINGATAN SP - Projek PBL</title>
+
+  <!-- Menghubungkan file Bootstrap CSS -->
+  <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Menggunakan font Poppins dan Nunito dari Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Nunito:wght@500;600&display=swap" rel="stylesheet">
+
+  <style>
+  /* ------------------------------
+     🌸 Bagian CSS Tampilan Website
+     ------------------------------ */
+
+  body {
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    padding-top: 70px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Navbar */
+  .navbar {
+    background-color: #FD5DA8;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .navbar.transparent {
+    background-color: rgba(253,93,168,0.3);
+    box-shadow: none;
+  }
+
+  .navbar a.nav-link,
+  .navbar .navbar-brand {
+    color: #fff !important;
+    font-weight: 600;
+  }
+
+  /* Dropdown menu dari kumpulan projek */
+  .dropdown-menu {
+    width: 315px;
+    background-color: rgba(254,197,229,0.8);
+    border-radius: 10px;
+    padding: 8px;
+    border: none;
+    backdrop-filter: blur(6px);
+  }
+
+  .dropdown-menu .dropdown-item {
+    color: #e11584;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+  }
+
+  .dropdown-menu .dropdown-item:hover {
+    background-color: rgba(222, 100, 169, 0.8);
+  }
+
+  /* Bagian konten utama projek */
+  .project-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background-color: #ffe4f3;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    flex-grow: 1;
+  }
+
+  .project-title {
+    text-align: center;
+    color: #e11584;
+    font-weight: 700;
+    margin-bottom: 25px;
+  }
+
+  .project-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+  }
+
+  /* Kotak foto dokumentasi projek */
+  .project-image {
+    width: 490px;
+    height: 405px;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 2px dashed #e11584;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e11584;
+    font-weight: 500;
+  }
+
+  /* Kotak informasi mahasiswa pembuat projek */
+  .project-info {
+    background-color: #fec5e5;
+    border-radius: 10px;
+    padding: 20px;
+    width: 420px;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .project-info h5 {
+    color: #e11584;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  /* Tombol eksternal menuju website projek */
+  .external-link-box {
+    margin-top: 70px;
+    text-align: center;
+  }
+
+  .external-link-box a {
+    background-color: #e11584;
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    transition: 0.3s;
+    font-weight: 600;
+  }
+
+  .external-link-box a:hover {
+    background-color: #ff7fc3;
+  }
+
+  /* Footer */
+  footer {
+    background-color:#FD5DA8;
+    color:#fff;
+    padding:12px 0;
+    text-align:center;
+    margin-top:auto;
+  }
+    .tombol-aksi {
+    display: flex;
+    gap: 8px; /*jarak antar tombol*/
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+  }
+</style>
+
+<body>
+  <!-- 🌸 Navbar berisi judul dan menu navigasi -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <!-- Judul Navbar -->
+      <a class="navbar-brand">PENGELOLAAN SURAT PERINGATAN SP</a>
+
+      <!-- Tombol responsive jika layar kecil -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menu navigasi -->
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav align-items-center">
+
+          <!-- Menu Beranda -->
+          <li class="nav-item">
+            <a class="nav-link" href="home.html">BERANDA</a>
+          </li>
+
+          <!-- Menu dropdown kumpulan projek -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              KUMPULAN PROJEK PBL
+            </a>
+
+            <!-- Daftar projek di dalam dropdown -->
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="buku-tamu-tata-usaha.html">BUKU TAMU TATA USAHA (TU)</a></li>
+              <li><a class="dropdown-item" href="pengelolaan-rapat.html">PENGELOLAAN RAPAT</a></li>
+              <li><a class="dropdown-item" href="pencatatan-notulen.html">PENCATATAN NOTULEN</a></li>
+              <li><a class="dropdown-item" href="pengelolaan-surat-peringatan-sp.html">PENGELOLAAN SURAT<br>PERINGATAN SP</a></li>
+              <li><a class="dropdown-item" href="jadwal-perkuliahan-mahasiswa-(pribadi).html">JADWAL PERKULIAHAN MAHASISWA<br>(PRIBADI)</a></li>
+              <li><a class="dropdown-item" href="web-informasi-event-kampus.html">WEB INFORMASI EVENT KAMPUS</a></li>
+              <li><a class="dropdown-item" href="aplikasi-pengumuman-akademik-online.html">APLIKASI PENGUMUMAN<br>AKADEMIK ONLINE</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- 🌸 Bagian isi halaman utama -->
+  <div class="project-container">
+    <h2 class="project-title">PENGELOLAAN SURAT PERINGATAN SP</h2>
+
+    <div class="project-content">
+      <!-- Kotak foto dokumentasi -->
+      <div class="project-image">
+        FOTO DOKUMENTASI PROJEK
+      </div>
+
+      <!-- Informasi pembuat projek -->
+      <div class="project-info">
+        <h5 style="margin-bottom: 30px;">HASIL PROJEK PBL OLEH:</h5>
+        <p style="font-weight: bold; font-size: 20px;">M.KHAIRIL CHANDRA<br>3312511014</p>
+        <p style="font-weight: bold; font-size: 20px;">DIVANI PUTRI OLIVIA HUTAGAOL<br>3312511012</p>
+        <p style="font-weight: bold; font-size: 20px;">YOGA PUTRA AGUSETIAWAN<br>3312511013</p>
+        <p style="font-weight: bold; font-size: 20px;">QOONITAH NOVIA DAMAYANTI<br>3312511015</p>
+      </div>
+    </div>
+
+    <!-- Tombol menuju website projek -->
+    <div class="external-link-box">
+      <a href="https://contohprojekpbl.com" target="_blank">LIHAT WEBSITE PROJEK</a>
+    </div>
+  </div>
+
+  <!-- Footer website -->
+  <footer>
+    © 2025 Projek PBL | All Rights Reserved
+  </footer>
+
+  <!-- Menghubungkan file JavaScript Bootstrap -->
+  <script src="bootstrap/js/bootstrap.bundle.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const username = localStorage.getItem("username");
+  const role = localStorage.getItem("role");
+
+  if (role !== "mahasiswa") return; // hanya mahasiswa yang bisa edit
+
+  // Hak akses tiap halaman: username yang boleh edit halaman itu
+  const pageAccess = {
+    "jadwal-perkuliahan-mahasiswa-(pribadi).html": ["intan_rahmadani","afdal_rahman","muhammad_fachri","lionel_patra"],
+    "pencatatan-notulen.html": ["nalita_nurul","andi_lumban","dody_sinaga","muhammad_muas"],
+    "pengelolaan-rapat.html": ["muhammad_subhan","muhammad_farhan","firnanda_habib","muhammad_yasir"],
+    "pengelolaan-surat-peringatan-sp.html": ["m_khairil","divani_putri","yoga_putra","qoonitah_novia"],
+    "web-informasi-event-kampus.html": ["aldi_ernando","adetyas_fauzia","lusiana_hotmauli","maria_putri"]
+  };
+
+  const currentPage = window.location.pathname.split("/").pop();
+
+  if (pageAccess[currentPage] && pageAccess[currentPage].includes(username)) {
+    const container = document.querySelector(".project-info");
+    if (!container) return;
+
+    const actionDiv = document.createElement("div");
+    actionDiv.style.marginTop = "20px";
+
+    actionDiv.innerHTML = `
+      <div class ="tombol-aksi">
+      <button id="editBtn" class="btn btn-sm btn-primary me-2">Edit</button>
+      <button id="deleteBtn" class="btn btn-sm btn-danger me-2">Hapus</button>
+      <button id="viewCommentsBtn" class="btn btn-sm btn-success">Lihat Komentar & Nilai Dosen</button>
+    `;
+    container.appendChild(actionDiv);
+
+    // Event tombol
+    document.getElementById("editBtn").addEventListener("click", () => {
+      alert("Fitur edit halaman ini aktif!");
+      // bisa redirect ke halaman edit atau munculkan form edit
+    });
+
+    document.getElementById("deleteBtn").addEventListener("click", () => {
+      const confirmDel = confirm("Apakah yakin ingin menghapus konten ini?");
+      if(confirmDel){
+        alert("Konten dihapus!");
+        // logika hapus di sini
+      }
+    });
+
+    document.getElementById("viewCommentsBtn").addEventListener("click", () => {
+      alert("Menampilkan komentar & nilai dari dosen...");
+      // bisa tampil modal / popup komentar & nilai
+    });
+
+  } else {
+    console.log("User tidak punya hak akses edit/hapus/komentar di halaman ini.");
+  }
+});
+</script>
+
+</body>
+</html>
