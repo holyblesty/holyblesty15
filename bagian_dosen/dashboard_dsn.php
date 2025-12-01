@@ -7,39 +7,26 @@ if (!isset($_SESSION['id_dosen'])) {
     exit;
 }
 
-if (!isset($_GET['id_portofolio'])) {
-    echo "ID Portofolio tidak ditemukan!";
-    exit;
-}
-
-$id_portofolio = $_GET['id_portofolio'];
-
-$sql = "SELECT p.*, m.nama 
-        FROM portofolio p
-        JOIN login_mhs m ON m.id_mahasiswa = p.id_mahasiswa
-        WHERE p.id_portofolio = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $id_portofolio);
-$stmt->execute();
-$data = $stmt->get_result()->fetch_assoc();
+$nama = $_SESSION['nama'];
 ?>
 
-<h2>Beri Nilai</h2>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Dosen</title>
+</head>
+<body>
 
-<form action="proses_nilai.php" method="POST">
-    <input type="hidden" name="id_portofolio" value="<?= $data['id_portofolio'] ?>">
+<!-- NAVBAR -->
+<div style="margin-bottom: 15px;">
+    <a href="dashboard_dsn.php">🏠 Dashboard</a> |
+    <a href="portofolio_dsn.php">📁 Portofolio Mahasiswa</a> |
+    <a href="logout.php">🚪 Logout</a>
+</div>
 
-    Nama Mahasiswa:<br>
-    <input type="text" value="<?= $data['nama'] ?>" readonly><br><br>
+<h2>Selamat datang, <?= $nama ?> (Dosen)</h2>
+<p>Silakan pilih menu di atas.</p>
 
-    Judul Proyek:<br>
-    <input type="text" value="<?= $data['judul'] ?>" readonly><br><br>
-
-    Nilai:<br>
-    <input type="number" name="nilai" min="0" max="100" required><br><br>
-
-    Catatan:<br>
-    <textarea name="catatan" rows="4"></textarea><br><br>
-
-    <button type="submit">Simpan Nilai</button>
-</form>
+</body>
+</html>
