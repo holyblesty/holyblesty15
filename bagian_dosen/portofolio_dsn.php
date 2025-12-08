@@ -410,7 +410,48 @@ $nama = $_SESSION['nama'];
                 </div>
             </div>
         </div>
-        
+        <!-- SEARCH FORM -->
+<form method="GET" class="mb-4">
+    <div style="
+        display:flex;
+        gap:10px;
+        align-items:center;
+        background:white;
+        padding:15px;
+        border-radius:10px;
+        border:1px solid #ffe4f3;
+        box-shadow:0 2px 6px rgba(0,0,0,0.05);
+    ">
+        <input 
+            type="text" 
+            name="cari_nim" 
+            value="<?= isset($_GET['cari_nim']) ? htmlspecialchars($_GET['cari_nim']) : '' ?>" 
+            placeholder="Cari berdasarkan NIM mahasiswa..." 
+            style="
+                flex:1;
+                padding:10px 15px;
+                border-radius:8px;
+                border:1px solid #e11584;
+                outline:none;
+            "
+        >
+
+        <button type="submit"
+            style="
+                background:linear-gradient(135deg, #e11584, #ff69b4);
+                color:white;
+                padding:10px 20px;
+                border:none;
+                border-radius:8px;
+                cursor:pointer;
+                font-weight:600;
+                transition:0.3s;
+            ">
+            🔍 Cari
+        </button>
+    </div>
+</form>
+
         <!-- TABLE PORTFOLIO -->
         <div class="table-container">
             <div class="table-responsive">
@@ -418,7 +459,7 @@ $nama = $_SESSION['nama'];
                     <thead>
                         <tr>
                             <th width="5%" class="text-center">No</th>
-                            <th width="20%">Mahasiswa</th>
+                            <th width="20%">Mahasiswa (NIM)</th>
                             <th width="25%">Judul Proyek</th>
                             <th width="20%">Deskripsi</th>
                             <th width="10%" class="text-center">Repository</th>
@@ -428,11 +469,19 @@ $nama = $_SESSION['nama'];
                     </thead>
                     <tbody>
                         <?php
-                        $sql = "SELECT p.*, m.nama AS nama_mahasiswa, n.nilai, n.catatan
-                                FROM portofolio p
-                                INNER JOIN login_mhs m ON m.id_mahasiswa = p.id_mahasiswa
-                                LEFT JOIN nilai n ON n.id_portofolio = p.id_portofolio
-                                ORDER BY p.id_portofolio ASC";
+                      $where = "";
+    if (isset($_GET['cari_nim']) && $_GET['cari_nim'] !== "") {
+        $cari = bersihkan_input($_GET['cari_nim']);
+        $where = "WHERE m.username LIKE '%$cari%'"; // diasumsikan NIM = username mhs
+    }
+    
+    $sql = "SELECT p.*, m.nama AS nama_mahasiswa, n.nilai, n.catatan, m.username AS nim
+        FROM portofolio p
+        INNER JOIN login_mhs m ON m.id_mahasiswa = p.id_mahasiswa
+        LEFT JOIN nilai n ON n.id_portofolio = p.id_portofolio
+        $where
+        ORDER BY p.id_portofolio ASC";
+
 
                         $stmt = $koneksi->prepare($sql);
                         $stmt->execute();
@@ -469,7 +518,11 @@ $nama = $_SESSION['nama'];
                         <tr>
                             <td class="text-center"><?= $no++ ?></td>
                             <td>
-                                <strong><?= htmlspecialchars($p['nama_mahasiswa']) ?></strong>
+                               <td>
+                        <strong><?= htmlspecialchars($p['nama_mahasiswa']) ?></strong><br>
+                        <small style="color:#666;">NIM: <?= htmlspecialchars($p['nim']) ?></small>
+                            </td>
+
                             </td>
                             <td><?= htmlspecialchars($p['judul']) ?></td>
                             <td>
